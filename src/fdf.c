@@ -6,7 +6,7 @@
 /*   By: ccliffor <ccliffor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 12:28:21 by ccliffor          #+#    #+#             */
-/*   Updated: 2018/07/23 14:04:45 by ccliffor         ###   ########.fr       */
+/*   Updated: 2018/07/27 15:02:11 by ccliffor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ int			main(int argc, char **argv)
 
 	param.mlx = mlx_init();
 	get_map_dimensions(argv[1], &param);
-	get_map_data(argv[1], &param);
-	param.scale = 10;
-	param.width = sqrt(pow(param.size_x, 2) + pow(param.size_z, 2)) * param.scale;
-	param.height = param.size_y * param.scale + 50;
-	param.window = mlx_new_window(param.mlx, param.width, param.height, "does bruno mars is gay");
+	param.width = 640;
+	param.height = 430;
 	param.mid_x = param.width / 2;
 	param.mid_y = param.height / 2;
+	param.window = mlx_new_window(param.mlx, param.width, param.height, \
+		"does bruno mars is gay");
 	(void)argc;
+	get_map_data(argv[1], &param);
+	param.scale = (float)param.size_x / (float)param.width;
 	rotate_Y(&param, -0.785398);
 	rotate_X(&param, -0.523599);
 	draw_map(&param);

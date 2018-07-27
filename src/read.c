@@ -6,7 +6,7 @@
 /*   By: ccliffor <ccliffor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 14:31:51 by ccliffor          #+#    #+#             */
-/*   Updated: 2018/07/23 12:24:43 by ccliffor         ###   ########.fr       */
+/*   Updated: 2018/07/27 15:02:14 by ccliffor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void	get_map_data(char *file, t_param *param)
 				param->size_y = atoi(list[x]);
 			param->points[x + z * param->size_x][1] = atoi(list[x]);
 			param->points[x + z * param->size_x][2] = z;
-			if (ft_strchr(list[x], 'x'))
-				param->points[x + z * param->size_x][3] = strtol(ft_strchr(list[x], 'x') + 1, NULL, 16);
-			else
+			// if (ft_strchr(list[x], 'x'))
+			// 	param->points[x + z * param->size_x][3] = strtol(ft_strchr(list[x], 'x') + 1, NULL, 16);
+			// else
 				param->points[x + z * param->size_x][3] = 0xFFFFFF;
 			x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: ccliffor <ccliffor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 11:57:07 by ccliffor          #+#    #+#             */
-/*   Updated: 2018/07/23 15:19:59 by ccliffor         ###   ########.fr       */
+/*   Updated: 2018/07/27 15:02:13 by ccliffor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@
 
 typedef float	t_point[4];
 typedef int		t_line[4];
+
+typedef struct	s_range
+{
+	float	start;
+	float	end;
+}				t_range;
 
 typedef struct	s_image
 {
