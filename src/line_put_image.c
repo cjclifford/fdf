@@ -6,7 +6,7 @@
 /*   By: ccliffor <ccliffor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 14:30:03 by ccliffor          #+#    #+#             */
-/*   Updated: 2018/08/03 17:43:15 by ccliffor         ###   ########.fr       */
+/*   Updated: 2018/08/03 17:45:31 by ccliffor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void		line_put_image(t_param *param, t_line line, int point1, int point2)
 	int		iterate;
 	int		*x;
 	int		*y;
-	t_range	r1;
-	t_range	r2;
 
 	(void)point2;
 
@@ -47,10 +45,6 @@ void		line_put_image(t_param *param, t_line line, int point1, int point2)
 		x = &line[1];
 		y = &line[0];
 	}
-	r1[0] = line[0];
-	r1[1] = line[1];
-	r2[0] = 0;
-	r2[1] = 1;
 	iterate = -1 + (2 * (line[0] < line[2]));
 	slope = ((double)abs(line[1] - line[3]) / (double)abs(line[0] - line[2])) * \
 	(-1 + (2 * (line[1] < line[3])));
