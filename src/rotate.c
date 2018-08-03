@@ -6,19 +6,19 @@
 /*   By: ccliffor <ccliffor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 13:59:36 by ccliffor          #+#    #+#             */
-/*   Updated: 2018/07/16 16:42:22 by ccliffor         ###   ########.fr       */
+/*   Updated: 2018/07/30 11:23:57 by ccliffor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	rotate_X(t_param *param, float theta)
+void	rotate_x(t_param *param, float theta)
 {
 	double	sin_t;
 	double	cos_t;
 	float	tmp;
 	float	tmp_point[2];
-	int	i;
+	int		i;
 
 	sin_t = sin(theta);
 	cos_t = cos(theta);
@@ -36,13 +36,13 @@ void	rotate_X(t_param *param, float theta)
 	}
 }
 
-void	rotate_Y(t_param *param, float theta)
+void	rotate_y(t_param *param, float theta)
 {
 	double	sin_t;
 	double	cos_t;
 	float	tmp;
 	float	tmp_point[2];
-	int	i;
+	int		i;
 
 	sin_t = sin(theta);
 	cos_t = cos(theta);
@@ -60,13 +60,13 @@ void	rotate_Y(t_param *param, float theta)
 	}
 }
 
-void	rotate_Z(t_param *param, float theta)
+void	rotate_z(t_param *param, float theta)
 {
 	double	sin_t;
 	double	cos_t;
 	float	tmp;
 	float	tmp_point[2];
-	int	i;
+	int		i;
 
 	sin_t = sin(theta);
 	cos_t = cos(theta);

@@ -6,7 +6,7 @@
 /*   By: ccliffor <ccliffor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 14:30:03 by ccliffor          #+#    #+#             */
-/*   Updated: 2018/07/27 15:02:10 by ccliffor         ###   ########.fr       */
+/*   Updated: 2018/08/03 17:43:15 by ccliffor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,41 +21,49 @@ static void	swap(int *a, int *b)
 	*b = tmp;
 }
 
-void	line_put_image(t_param *param, int x1, int y1, int x2, int y2, int point1, int point2)
+void		line_put_image(t_param *param, t_line line, int point1, int point2)
 {
 	double	slope;
 	double	offset;
 	int		iterate;
-	int		start;
 	int		*x;
 	int		*y;
+	t_range	r1;
+	t_range	r2;
+
+	(void)point2;
 
 	slope = 0;
 	offset = 0;
-	if (abs(x1 - x2) >= abs(y1 - y2))
+	if (abs(line[0] - line[2]) >= abs(line[1] - line[3]))
 	{
-		x = &x1;
-		y = &y1;
+		x = &line[0];
+		y = &line[1];
 	}
 	else
 	{
-		swap(&x1, &y1);
-		swap(&x2, &y2);
-		x = &y1;
-		y = &x1;
+		swap(&line[0], &line[1]);
+		swap(&line[2], &line[3]);
+		x = &line[1];
+		y = &line[0];
 	}
-	start = x1;
-	iterate = -1 + (2 * (x1 < x2));
-	slope = ((double)abs(y1 - y2) / (double)abs(x1 - x2)) * (-1 + (2 * (y1 < y2)));
-	while (x1 != x2)
+	r1[0] = line[0];
+	r1[1] = line[1];
+	r2[0] = 0;
+	r2[1] = 1;
+	iterate = -1 + (2 * (line[0] < line[2]));
+	slope = ((double)abs(line[1] - line[3]) / (double)abs(line[0] - line[2])) * \
+	(-1 + (2 * (line[1] < line[3])));
+	while (line[0] != line[2])
 	{
 		if (offset >= 0.5 || offset <= -0.5)
 		{
-			offset -= -1 + (2 * (y1 < y2));
-			y1 += -1 + (2 * (y1 < y2));
+			offset -= -1 + (2 * (line[1] < line[3]));
+			line[1] += -1 + (2 * (line[1] < line[3]));
 		}
-		pixel_put_image(param, *x, *y, gradient(param->points[point1][3], param->points[point2][3], map(*x, start, x2, 0, 1)));
-		x1 += iterate;
+		if ((*x < (int)param->width && *x > 0) || (*y < (int)param->height && *y > 0))
+			pixel_put_image(param, *x, *y, (int)param->points[point1][3]);
+		line[0] += iterate;
 		offset += slope;
 	}
 }

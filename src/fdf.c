@@ -6,7 +6,7 @@
 /*   By: ccliffor <ccliffor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 12:28:21 by ccliffor          #+#    #+#             */
-/*   Updated: 2018/07/27 15:02:11 by ccliffor         ###   ########.fr       */
+/*   Updated: 2018/07/30 16:16:37 by ccliffor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int			main(int argc, char **argv)
 		"does bruno mars is gay");
 	(void)argc;
 	get_map_data(argv[1], &param);
-	param.scale = (float)param.size_x / (float)param.width;
-	rotate_Y(&param, -0.785398);
-	rotate_X(&param, -0.523599);
+	param.scale = 10;
+	rotate_y(&param, -0.785398);
+	rotate_x(&param, -0.523599);
 	draw_map(&param);
 	mlx_hook(param.window, 2, 0L, keyboard_hook, &param);
 	mlx_hook(param.window, 4, 0L, mouse_hook_press, &param);
