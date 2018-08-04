@@ -6,7 +6,7 @@
 /*   By: ccliffor <ccliffor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 14:34:04 by ccliffor          #+#    #+#             */
-/*   Updated: 2018/08/03 17:38:56 by ccliffor         ###   ########.fr       */
+/*   Updated: 2018/08/04 13:31:42 by ccliffor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ static int	translate_y(t_param param, float i)
 
 void		draw_map(t_param *param)
 {
-	size_t	y;
-	size_t	x;
+	int	y;// was size_t
+	int	x;// was size_t
 	size_t	i;
 	t_line	line;
 	t_image	image;
@@ -134,7 +134,6 @@ void		draw_map(t_param *param)
 					param->points[i + param->size_x][1]);
 				// if (line_clip(*param, line))
 					line_put_image(param, line, i, i + param->size_x);
-				// printf("%d, %d\t%d, %d\n", line[0], line[1], line[2], line[3]);
 			}
 			if (x + 1 < param->size_x)
 			{
@@ -146,7 +145,6 @@ void		draw_map(t_param *param)
 					param->points[i + 1][1]);
 				// if (line_clip(*param, line))
 					line_put_image(param, line, i, i + 1);
-				// printf("%d, %d\t%d, %d\n", line[0], line[1], line[2], line[3]);
 			}
 			x++;
 		}

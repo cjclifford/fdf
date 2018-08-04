@@ -6,7 +6,7 @@
 /*   By: ccliffor <ccliffor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 12:28:21 by ccliffor          #+#    #+#             */
-/*   Updated: 2018/07/30 16:16:37 by ccliffor         ###   ########.fr       */
+/*   Updated: 2018/08/04 12:29:14 by ccliffor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int			main(int argc, char **argv)
 	t_param	param;
 
 	param.mlx = mlx_init();
-	get_map_dimensions(argv[1], &param);
+	if (!get_map_dimensions(argv[1], &param))
+		return (0);
 	param.width = 640;
 	param.height = 430;
 	param.mid_x = param.width / 2;

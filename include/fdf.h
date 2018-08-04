@@ -6,7 +6,7 @@
 /*   By: ccliffor <ccliffor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 11:57:07 by ccliffor          #+#    #+#             */
-/*   Updated: 2018/07/31 12:21:53 by ccliffor         ###   ########.fr       */
+/*   Updated: 2018/08/04 13:26:50 by ccliffor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@ typedef struct	s_param
 
 	t_point	*points;
 
-	size_t	size_x;
-	size_t	size_y;
-	size_t	size_z;
+	int	size_x;//was size_t
+	int	size_y;//was size_t
+	int	size_z;//was size_t
 
 	size_t	width;
 	size_t	height;
 
-	size_t	mid_x;
-	size_t	mid_y;
+	int	mid_x;//was size_t
+	int	mid_y;//was size_t
 	
 	float	scale;
 
@@ -72,10 +72,9 @@ int		mouse_hook_press(int button, int x, int y, t_param *param);
 int		mouse_hook_release(int button, int x, int y, t_param *param);
 
 void	line_put_image(t_param *param, t_line line, int point1, int point2);
-// void	line_put_image(t_param *param, int x1, int y1, int x2, int y2, int point1, int point2);
 void	pixel_put_image(t_param *param, int x, int y, int color);
 
-void	get_map_dimensions(char *file, t_param *param);
+int		get_map_dimensions(char *file, t_param *param);
 void	get_map_data(char *file, t_param *param);
 
 void	draw_map(t_param *param);

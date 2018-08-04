@@ -6,18 +6,18 @@
 /*   By: ccliffor <ccliffor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 14:31:51 by ccliffor          #+#    #+#             */
-/*   Updated: 2018/07/30 15:48:42 by ccliffor         ###   ########.fr       */
+/*   Updated: 2018/08/04 13:12:11 by ccliffor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	get_map_dimensions(char *file, t_param *param)
+int	get_map_dimensions(char *file, t_param *param)
 {
 	char	**list;
 	char	*line;
 	int		fd;
-	size_t	i;
+	int	i;// was size_t
 
 	fd = open(file, O_RDONLY);
 	param->size_z = 0;
@@ -31,10 +31,19 @@ void	get_map_dimensions(char *file, t_param *param)
 		if (param->size_z == 0)
 			param->size_x = i;
 		else if (i < param->size_x)
-			return ;
+		{
+			ft_putstr_fd("Found wrong line length. Exiting.\n", 2);
+			return (0);
+		}
 		param->size_z++;
 	}
+	if (!param->size_x)
+	{
+		ft_putstr_fd("No data found.\n", 2);
+		return (0);
+	}
 	close(fd);
+	return (1);
 }
 
 void	get_map_data(char *file, t_param *param)
@@ -48,6 +57,7 @@ void	get_map_data(char *file, t_param *param)
 	param->points = (t_point *)malloc(sizeof(t_point) * (param->size_z * \
 		param->size_x));
 	fd = open(file, O_RDONLY);
+	param->size_y = 0;
 	z = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
