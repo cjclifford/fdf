@@ -6,7 +6,7 @@
 /*   By: ccliffor <ccliffor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 14:31:51 by ccliffor          #+#    #+#             */
-/*   Updated: 2018/08/04 13:12:11 by ccliffor         ###   ########.fr       */
+/*   Updated: 2018/08/09 12:18:07 by ccliffor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	get_map_dimensions(char *file, t_param *param)
 	char	**list;
 	char	*line;
 	int		fd;
-	int	i;// was size_t
+	int		i;
 
 	fd = open(file, O_RDONLY);
 	param->size_z = 0;
@@ -27,7 +27,10 @@ int	get_map_dimensions(char *file, t_param *param)
 		list = ft_strsplit(line, ' ');
 		i = 0;
 		while (list[i])
+		{
+			free(list[i]);
 			i++;
+		}
 		if (param->size_z == 0)
 			param->size_x = i;
 		else if (i < param->size_x)
@@ -36,6 +39,8 @@ int	get_map_dimensions(char *file, t_param *param)
 			return (0);
 		}
 		param->size_z++;
+		free(list);
+		free(line);
 	}
 	if (!param->size_x)
 	{
@@ -74,11 +79,12 @@ void	get_map_data(char *file, t_param *param)
 				param->points[x + z * param->size_x][3] = strtol(ft_strchr(list[x], 'x') + 1, NULL, 16);
 			else
 				param->points[x + z * param->size_x][3] = 0xFFFFFF;
+			free(list[x]);
 			x++;
 		}
-		free(list[x]);
-		free(list);
 		z++;
+		free(list);
+		free(line);
 	}
 	close(fd);
 }

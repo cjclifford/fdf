@@ -6,16 +6,16 @@
 #    By: ccliffor <ccliffor@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/10 16:12:11 by ccliffor          #+#    #+#              #
-#    Updated: 2018/07/27 15:02:12 by ccliffor         ###   ########.fr        #
+#    Updated: 2018/08/08 10:53:52 by ccliffor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #-- PROGRAM --#
 NAME	= fdf
 SRCDIR	= src/
-SRCS	= $(SRCDIR)fdf.c $(SRCDIR)rotate.c $(SRCDIR)hooks.c $(SRCDIR)line_put_image.c \
-			$(SRCDIR)read.c $(SRCDIR)draw.c $(SRCDIR)pixel_put_image.c $(SRCDIR)map.c \
-			$(SRCDIR)colour.c
+SRCS	= $(SRCDIR)fdf.c $(SRCDIR)rotate.c $(SRCDIR)keyboard_hooks.c \
+			$(SRCDIR)mouse_hooks.c $(SRCDIR)line_put_image.c \
+			$(SRCDIR)read.c $(SRCDIR)draw.c $(SRCDIR)pixel_put_image.c
 LIB	= libft/libft.a
 
 #	-- Compiler, libs, flags

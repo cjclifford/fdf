@@ -6,7 +6,7 @@
 /*   By: ccliffor <ccliffor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 11:57:07 by ccliffor          #+#    #+#             */
-/*   Updated: 2018/08/04 13:26:50 by ccliffor         ###   ########.fr       */
+/*   Updated: 2018/08/08 11:00:45 by ccliffor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,12 @@ int		mouse_hook_normal(int x, int y, t_param *param);
 int		mouse_hook_press(int button, int x, int y, t_param *param);
 int		mouse_hook_release(int button, int x, int y, t_param *param);
 
-void	line_put_image(t_param *param, t_line line, int point1, int point2);
+void	line_put_image(t_param *param, t_line line, int point);
 void	pixel_put_image(t_param *param, int x, int y, int color);
 
 int		get_map_dimensions(char *file, t_param *param);
 void	get_map_data(char *file, t_param *param);
 
 void	draw_map(t_param *param);
-
-float	map(float value, t_range i_range, t_range o_range);
-
-int		gradient(int colour1, int colour2, float factor);
 
 #endif
