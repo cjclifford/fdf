@@ -6,7 +6,7 @@
 /*   By: ccliffor <ccliffor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 11:57:07 by ccliffor          #+#    #+#             */
-/*   Updated: 2018/08/08 11:00:45 by ccliffor         ###   ########.fr       */
+/*   Updated: 2018/08/09 15:09:15 by ccliffor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ typedef struct	s_param
 	int	size_y;//was size_t
 	int	size_z;//was size_t
 
-	size_t	width;
-	size_t	height;
+	int	width;
+	int	height;
 
 	int	mid_x;//was size_t
 	int	mid_y;//was size_t

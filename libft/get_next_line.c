@@ -5,86 +5,60 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccliffor <ccliffor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/05 10:55:21 by ccliffor          #+#    #+#             */
-/*   Updated: 2018/07/10 16:01:15 by ccliffor         ###   ########.fr       */
+/*   Created: 2018/05/28 16:10:54 by ccliffor          #+#    #+#             */
+/*   Updated: 2018/08/09 15:57:45 by ccliffor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		has_nl(const char *buff)
+static int		copyline(char *line, char *buf)
 {
-	while (*buff)
+	unsigned int		count;
+
+	count = 0;
+	while (line[count] != '\n' && line[count])
+		count++;
+	if (ft_strlen(line) > count + 1)
 	{
-		if (*buff == '\n')
-			return (1);
-		buff++;
+		buf = ft_strcpy(buf, &(line[count + 1]));
 	}
-	return (0);
-}
-
-static char		*store_bytes(char **buff)
-{
-	char	*line;
-	char	*p_buff;
-	char	*tmp;
-	size_t	i;
-
-	i = 0;
-	if (!buff || !*buff)
-		return (NULL);
-	while ((*buff)[i] && (*buff)[i] != '\n')
-		i++;
-	if (!(line = ft_strsub(*buff, 0, i)))
-		return (NULL);
-	p_buff = &(*buff)[i + ((*buff)[i] == '\n')];
-	tmp = ft_strdup(p_buff);
-	ft_strdel(buff);//----------------------------------------------------------
-	*buff = tmp;
-	return (line);
-}
-
-static int		read_more(const int fd, char **buff)
-{
-	char	more[BUFF_SIZE + 1];
-	char	*tmp;
-	ssize_t	br;
-
-	if (!(br = read(fd, more, BUFF_SIZE)))
-		return (0);
-	else if (br < 0)
-		return (-1);
-	more[br] = '\0';
-	tmp = ft_strjoin(*buff, more);
-	ft_strdel(buff);//----------------------------------------------------------
-	*buff = tmp;
+	line[count] = '\0';
 	return (1);
+}
+
+static int		do_line(const int fd, char **line, char **buff)
+{
+	char		*temp;
+	int			val;
+
+	val = 1;
+	while (!(ft_strchr(*line, '\n')) &&
+			(val = read(fd, buff[fd], BUFF_SIZE)) > 0)
+	{
+		temp = *line;
+		*line = ft_strjoin(*line, buff[fd]);
+		free(temp);
+		if (!*line)
+			return (-1);
+		ft_bzero(buff[fd], BUFF_SIZE);
+	}
+	if (*line[0] != '\0' && val >= 0)
+		return (copyline(*line, buff[fd]));
+	return (val);
 }
 
 int				get_next_line(const int fd, char **line)
 {
-	static char	*buff[1];
-	int			read_ret;
+	static char	*buff[1000000];
 
-	if (fd < 0 || !line)
+	if (fd < 0 || read(fd, buff[fd], 0) < 0 || !line ||
+		!(*line = ft_strnew(BUFF_SIZE + 1)))
 		return (-1);
-	*line = NULL;
 	if (!buff[fd])
-		buff[fd] = ft_strnew(1);
-	while (!has_nl(buff[fd]))
-	{
-		if (!(read_ret = read_more(fd, &buff[fd])))
-		{
-			if (!buff[fd] || !*buff[fd])
-				return (0);
-			if (!(*line = store_bytes(&buff[fd])))
-				return (-1);
-			return (1);
-		}
-		else if (read_ret == -1)
-			return (-1);
-	}
-	if (!(*line = store_bytes(&buff[fd])))
-		return (-1);
-	return (1);
+		buff[fd] = ft_strnew(BUFF_SIZE + 1);
+	if (buff[fd][0] != '\0')
+		*line = ft_strcpy(*line, buff[fd]);
+	ft_bzero(buff[fd], BUFF_SIZE);
+	return (do_line(fd, line, buff));
 }

@@ -6,7 +6,7 @@
 /*   By: ccliffor <ccliffor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 14:30:03 by ccliffor          #+#    #+#             */
-/*   Updated: 2018/08/09 11:19:34 by ccliffor         ###   ########.fr       */
+/*   Updated: 2018/08/09 16:20:11 by ccliffor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void		line_put_image(t_param *p, t_line line, int point)
 	y = &line[1];
 	get_swap(line, &x, &y);
 	iterate = -1 + (2 * (line[0] < line[2]));
-	slope = ((double)abs(line[1] - line[3]) / (double)abs(line[0] - line[2])) \
-	 * (-1 + (2 * (line[1] < line[3])));
+	slope = ((double)abs(line[1] - line[3]) / (double)abs(line[0] - line[2]))
+		* (-1 + (2 * (line[1] < line[3])));
 	while (line[0] != line[2])
 	{
 		if (offset >= 0.5 || offset <= -0.5)
